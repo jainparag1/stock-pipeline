@@ -1,7 +1,5 @@
 # Ignore log files and log directories
 # Top-level logs folder
-# Ignore log files and log directories
-# Top-level logs folder
 logs/
 # Any logs folder anywhere in the repo
 # Ignore log files and log directories
@@ -65,3 +63,19 @@ jars/
 jars/**
 
 spark-4-*.tgz
+
+# ignore Java artifacts
+*.jar
+airflow/airflow-webserver.pid
+*.class
+*.war
+*.ear
+*.iml
+target/
+build/
+out/
+.idea/
+*.log
+*.tmp
+*.bak
+*.swp
