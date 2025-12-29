@@ -1,0 +1,62 @@
+# Ignore log files and log directories
+# Top-level logs folder
+# Ignore log files and log directories
+# Top-level logs folder
+logs/
+# Any logs folder anywhere in the repo
+# Ignore log files and log directories
+# Top-level logs folder
+logs/
+# Any logs folder anywhere in the repo
+**/logs/
+# All files ending with .log
+*.log
+# Rotated/archived logs like file.log.1, file.log.gz
+*.log.*
+# Common editor/OS junk (optional)
+.DS_Store
+Thumbs.db
+
+# venv lib64 (common on some environments)
+data_simulator/venv/lib64/
+
+# checkpoint artifacts
+# Ignore log files and log directories
+# Top-level logs folder
+logs/
+
+# Any logs folder anywhere in the repo
+**/logs/
+
+# All files ending with .log
+*.log
+
+# Rotated/archived logs like file.log.1, file.log.gz
+*.log.*
+
+# Common editor/OS junk (optional)
+.DS_Store
+Thumbs.db
+
+# venv lib64 (common on some environments)
+data_simulator/venv/lib64/
+
+# checkpoint artifacts
+checkpoint/**
+
+# aggregated outputs
+aggregates/**
+
+# Ignore compiled python files
+__pycache__/
+*.py[cod]
+
+# virtualenvs
+.venv/
+venv/
+
+.vscode/
+.vscode/*
+
+output/
+output/**
