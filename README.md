@@ -9,9 +9,7 @@ This project is intentionally designed to reflect **real-world system design tra
 At a high level, the architecture follows this flow:
 
 **Decoupled Streaming Ingestion** → Kafka buffers events, decoupling producers from consumers. -> **Stateful Stream Processing** → Spark Structured Streaming with checkpointing ensures exactly-once semantics and safe restarts. -> **Lakehouse Storage** → Partitioned Parquet on MinIO enables cost-efficient, queryable long-term storage. -> **Intelligent Compaction** → Automated Spark batch jobs eliminate the small-file problem without manual intervention. -> **Scheduled Orchestration** → Airflow provides observability, retries, and failure recovery for all batch workloads. -> 
-**Analytics Layer** → dbt models and DuckDB deliver fast SQL-based insights without external dependencies.
-
-**User Dashboards** → Stateless Streamlit app visualizes trends, volumes, and anomalies in real time.
+**Analytics Layer** → dbt models and DuckDB deliver fast SQL-based insights without external dependencies. -> **User Dashboards** → Stateless Streamlit app visualizes trends, volumes, and anomalies in real time.
 
 The repository is structured as follows:
 
