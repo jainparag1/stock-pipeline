@@ -2,7 +2,7 @@
 
 This repository contains a production-style, end-to-end **real-time stock market streaming and analytics platform** built to demonstrate modern data engineering, streaming systems, and lakehouse architecture using open-source tools.
 
-The platform simulates high-frequency stock market ticks, ingests them through Kafka, processes them using Spark Structured Streaming, stores them in an S3-compatible lakehouse (MinIO), compacts data using Spark batch jobs orchestrated by Airflow, models analytics using dbt with DuckDB, and visualizes insights via a Streamlit dashboard.
+The platform simulates high-frequency stock market ticks, ingests them through **Kafka**, processes them using **Spark Structured Streaming**, stores them in an **S3-compatible lakehouse (MinIO)**, compacts data using **Spark batch jobs**, orchestrated by **Airflow**, models analytics using **dbt with DuckDB**, and visualizes insights via a **Streamlit** dashboard.
 
 This project is intentionally designed to reflect **real-world system design trade-offs**, operational challenges, and recovery patterns rather than toy examples or tutorial shortcuts. It is aimed at showcasing strong hands-on expertise in **streaming systems, distributed data processing, orchestration, and analytics engineering**, with a clear focus on senior engineer, tech lead, and CTO-level expectations.
 
