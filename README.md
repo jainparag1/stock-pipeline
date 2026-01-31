@@ -8,7 +8,7 @@ This project is intentionally designed to reflect **real-world system design tra
 
 At a high level, the architecture follows this flow:
 
-Kafka receives simulated stock tick events → Spark Structured Streaming consumes and processes the data → raw parquet files are written into MinIO using time-based partitions → periodic Spark compaction jobs merge small files into optimized partitions → Airflow orchestrates and monitors these batch jobs → dbt models transform the compacted parquet data using DuckDB → Streamlit reads the analytical tables and renders live dashboards.
+Kafka receives simulated stock tick events **→** Spark Structured Streaming consumes and processes the data **→** raw parquet files are written into MinIO using time-based partitions **→** periodic Spark compaction jobs merge small files into optimized partitions **→** Airflow orchestrates and monitors these batch jobs **→** dbt models transform the compacted parquet data using DuckDB **→** Streamlit reads the analytical tables and renders live dashboards.
 
 The repository is structured as follows:
 
