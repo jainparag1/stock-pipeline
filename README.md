@@ -11,26 +11,18 @@ This project was built to demonstrate how modern data platforms actually work in
 It focuses on:
 
 ⚡ Real-time streaming with Spark Structured Streaming
-
 🧱 Lakehouse-style storage using Parquet on MinIO (S3-compatible)
-
 🔁 Data compaction & optimization (often ignored, always critical)
-
 🛠️ Workflow orchestration with Airflow
-
 📊 Analytics & modeling using dbt + DuckDB
-
 📺 Live visualization via Streamlit
 
 This is the kind of system you’d expect in:
 
-Fintechs
-
-Trading platforms
-
-Data-driven startups
-
-Modern cloud-native data teams
+➜ Fintechs
+➜ Trading platforms
+➜ Data-driven startups
+➜ Modern cloud-native data teams
 
 🧠 High-Level Architecture
 ┌──────────────┐
@@ -114,82 +106,63 @@ stock-pipeline/
 ⚙️ Key Features
 ⚡ Real-Time Streaming
 
-Kafka-based stock tick ingestion
-
-Spark Structured Streaming with event-time processing
-
-Fault tolerance via checkpoints
+• Kafka-based stock tick ingestion
+• Spark Structured Streaming with event-time processing
+• Fault tolerance via checkpoints
 
 🧱 Lakehouse Storage
 
-Parquet-based storage on MinIO (S3-compatible)
-
-Partitioned by year / month / day / hour
-
-Optimized for downstream analytics
+• Parquet-based storage on MinIO (S3-compatible)
+• Partitioned by year / month / day / hour
+• Optimized for downstream analytics
 
 🔁 Compaction & Optimization
 
-Periodic Spark batch job
-
-Reduces small-file problem
-
-Orchestrated via Airflow (cron-style DAG)
+• Periodic Spark batch job
+• Reduces small-file problem
+• Orchestrated via Airflow (cron-style DAG)
 
 📊 Analytics with dbt + DuckDB
 
-SQL-first transformations
-
-Fast local analytics without external warehouses
-
-Easy transition to Trino / Athena / Snowflake later
+• SQL-first transformations
+• Fast local analytics without external warehouses
+• Easy transition to Trino / Athena / Snowflake later
 
 📺 Live Dashboard
 
-Streamlit-based UI
-
-Live price trends per ticker
-
-Min / Max / Average overlays
-
-Auto-refresh for near real-time insights
+• Streamlit-based UI
+• Live price trends per ticker
+• Min / Max / Average overlays
+• Auto-refresh for near real-time insights
 
 🛠️ Tech Stack
-Layer	Technology
-Ingestion	Kafka
+Layer	              Technology
+Ingestion	       Kafka
 Stream Processing	Apache Spark
-Storage	MinIO (S3-compatible)
-Orchestration	Apache Airflow
-Analytics	dbt + DuckDB
-Visualization	Streamlit
-Language	Python, SQL
-Format	Parquet
+Storage	       MinIO (S3-compatible)
+Orchestration	       Apache Airflow
+Analytics	       dbt + DuckDB
+Visualization	       Streamlit
+Language	       Python, SQL
+Format	              Parquet
+
 🎯 What This Project Demonstrates
 
-End-to-end ownership mindset
-
-Production-aware Spark & Hadoop internals
-
-Real-world data engineering trade-offs
-
-Ability to design systems, not just write code
-
-In short: how a Tech Lead thinks about data platforms.
+• Production-aware Spark & Hadoop internals
+• Real-world data engineering trade-offs
+• Ability to design systems, not just write code
+• In short: how a Tech Lead thinks about data platforms.
 
 🧭 Roadmap
 
- Trino / Athena-style query engine
-
- Schema evolution handling
-
- Metrics & data quality checks
-
- Cloud deployment (AWS / GCP)
-
- CI/CD for data pipelines
+• Trino / Athena-style query engine
+• Schema evolution handling
+• Metrics & data quality checks
+• Cloud deployment (AWS / GCP)
+• CI/CD for data pipelines
 
 👋 About Me
 
 Built by Parag Jain
-Senior Software Engineer | Data & Streaming Enthusiast
+Director of Software Engineering | Data & Streaming Enthusiast
 Aiming for CTO / Tech Lead roles in high-impact startups
