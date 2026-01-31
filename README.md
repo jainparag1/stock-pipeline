@@ -39,7 +39,7 @@ This project is designed for extensibility. Planned enhancements include schema 
 Please refer the documents under `docs/` section for **architecture, executive summary** and **running this project locally...!**
 
 Author: **Parag Jain**  
-Senior Software Engineer | Streaming & Data Platforms | Aspiring CTO  
+Director Software Engineering | Streaming & Data Platforms | Aspiring CTO  
 GitHub: https://github.com/jainparag1  
 Linkedin: https://www.linkedin.com/in/parag-jain-0395011
 
