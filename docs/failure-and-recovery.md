@@ -1,228 +1,228 @@
-🔥 Failure Scenarios & Recovery Guide
+## 🔥 Failure Scenarios & Recovery Guide
 
-Stock Market Streaming Platform
+## Stock Market Streaming Platform
 
-1. Kafka Producer Failure
+### 1. Kafka Producer Failure
 
-Scenario
+### Scenario
 
-• The stock data simulator crashes or stops sending events.
+The stock data simulator crashes or stops sending events.
 
-Impact
+### Impact
 
-• No new events published
-• Downstream systems remain idle
-• No data loss
+- No new events published
+- Downstream systems remain idle
+- No data loss
 
-Detection
+### Detection
 
-• Kafka topic lag stops increasing
-• Spark streaming shows zero input rows/sec
+- Kafka topic lag stops increasing
+- Spark streaming shows zero input rows/sec
 
-Recovery
+### Recovery
 
-• Restart producer
-• Kafka retains previous data
-• Spark resumes consumption automatically
+- Restart producer
+- Kafka retains previous data
+- Spark resumes consumption automatically
 
-Why This Is Safe
+### Why This Is Safe
 
-• Kafka decouples ingestion from processing, providing natural buffering.
+- Kafka decouples ingestion from processing, providing natural buffering.
 
-2. Kafka Broker Restart / Offset Issues
+## 2. Kafka Broker Restart / Offset Issues
 
-Scenario
+### Scenario
 
-• Kafka broker restarts or topic offsets reset during development.
+- Kafka broker restarts or topic offsets reset during development.
 
-Impact
+### Impact
 
-• Potential offset mismatch
-• Spark streaming job may fail
+- Potential offset mismatch
+- Spark streaming job may fail
 
-Detection
+### Detection
 
-• Spark logs show offset inconsistency
-• Streaming query terminates
+- Spark logs show offset inconsistency
+- Streaming query terminates
 
-Recovery
+### Recovery
 
-• Restart Spark job
-• Use failOnDataLoss=false (development only)
-• In production, enable Kafka retention safeguards
+- Restart Spark job
+- Use failOnDataLoss=false (development only)
+- In production, enable Kafka retention safeguards
 
-Trade-off
+### Trade-off
 
-• Prefers data availability during development over strict guarantees.
+- Prefers data availability during development over strict guarantees.
 
-3. Spark Streaming Job Crash
+## 3. Spark Streaming Job Crash
 
-Scenario
+### Scenario
 
-• Spark process crashes due to OOM, dependency issue, or node failure.
+- Spark process crashes due to OOM, dependency issue, or node failure.
 
-Impact
+### Impact
 
-• Streaming pauses temporarily
-• No data corruption
+- Streaming pauses temporarily
+- No data corruption
 
-Detection
+### Detection
 
-• Spark UI shows terminated query
-• No new files written
+- Spark UI shows terminated query
+- No new files written
 
-Recovery
+### Recovery
 
-• Restart streaming job
-• Spark resumes from last checkpoint
-• Exactly-once semantics preserved
+- Restart streaming job
+- Spark resumes from last checkpoint
+- Exactly-once semantics preserved
 
-Key Mechanism
+### Key Mechanism
 
-• Spark checkpoints store offsets and state.
+- Spark checkpoints store offsets and state.
 
-4. MinIO / Object Storage Outage
+## 4. MinIO / Object Storage Outage
 
-Scenario
+### Scenario
 
-• MinIO service becomes unavailable.
+- MinIO service becomes unavailable.
 
-Impact
+### Impact
 
-• Streaming job fails on write
-• Kafka continues accumulating data
+- Streaming job fails on write
+- Kafka continues accumulating data
 
-Detection
+### Detection
 
-• Spark write failures
-• MinIO health checks fail
+- Spark write failures
+- MinIO health checks fail
 
-Recovery
+### Recovery
 
-• Restart MinIO
-• Restart Spark streaming job
-• Backlog processed automatically
+- Restart MinIO
+- Restart Spark streaming job
+- Backlog processed automatically
 
-Why This Works
+### Why This Works
 
-• Storage is downstream of Kafka — ingestion continues safely.
+- Storage is downstream of Kafka — ingestion continues safely.
 
-5. Small File Explosion
+## 5. Small File Explosion
 
-Scenario
+### Scenario
 
-• High-frequency streaming produces thousands of tiny Parquet files.
+- High-frequency streaming produces thousands of tiny Parquet files.
 
-Impact
+### Impact
 
-• Query performance degradation
-• Increased metadata overhead
+- Query performance degradation
+- Increased metadata overhead
 
-Detection
+### Detection
 
-• Excessive file count per partition
-• Slower DuckDB/dbt queries
+- Excessive file count per partition
+- Slower DuckDB/dbt queries
 
-Recovery
+### Recovery
 
-• Trigger compaction job
-• Overwrite only affected partitions
-• Restore optimal file sizes
+- Trigger compaction job
+- Overwrite only affected partitions
+- Restore optimal file sizes
 
-6. Compaction Job Failure
+## 6. Compaction Job Failure
 
-Scenario
+### Scenario
 
-• Compaction Spark job fails mid-run.
+- Compaction Spark job fails mid-run.
 
-Impact
+### Impact
 
-• Partition remains unoptimized
-• No data loss
+- Partition remains unoptimized
+- No data loss
 
-Detection
+### Detection
 
-• Airflow DAG failure
-• Partial overwrite prevented by Spark semantics
+- Airflow DAG failure
+- Partial overwrite prevented by Spark semantics
 
-Recovery
+### Recovery
 
-• Rerun compaction DAG
-• Idempotent by partition
+- Rerun compaction DAG
+- Idempotent by partition
 
-7. Airflow Scheduler Down
+## 7. Airflow Scheduler Down
 
-Scenario
+### Scenario
 
-• Airflow scheduler crashes.
+- Airflow scheduler crashes.
 
-Impact
+### Impact
 
-• No scheduled compactions
-• Streaming unaffected
+- No scheduled compactions
+- Streaming unaffected
 
-Detection
+### Detection
 
-• DAGs not triggering
-• Airflow UI unavailable
+- DAGs not triggering
+- Airflow UI unavailable
 
-Recovery
+### Recovery
 
-• Restart scheduler
-• Manual backfill if needed
+- Restart scheduler
+- Manual backfill if needed
 
-8. dbt Model Failure
+## 8. dbt Model Failure
 
-Scenario
+### Scenario
 
-• Schema mismatch or missing partition causes dbt failure.
+- Schema mismatch or missing partition causes dbt failure.
 
-Impact
+### Impact
 
-• Analytics models not refreshed
-• Raw data remains intact
+- Analytics models not refreshed
+- Raw data remains intact
 
-Detection
+### Detection
 
-• dbt run errors
-• CI or logs show failing model
+- dbt run errors
+- CI or logs show failing model
 
-Recovery
+### Recovery
 
-• Fix model logic
-• Re-run dbt
-• No impact on upstream systems
+- Fix model logic
+- Re-run dbt
+- No impact on upstream systems
 
-9. Dashboard Failure
+## 9. Dashboard Failure
 
-Scenario
+### Scenario
 
-• Streamlit dashboard crashes or loses connectivity.
+- Streamlit dashboard crashes or loses connectivity.
 
-Impact
+### Impact
 
-• Visualization unavailable
-• Data pipeline continues running
+- Visualization unavailable
+- Data pipeline continues running
 
-Detection
+### Detection
 
-• UI inaccessible
+- UI inaccessible
 
-Recovery
+### Recovery
 
-• Restart dashboard
-• Stateless design enables fast recovery
+- Restart dashboard
+- Stateless design enables fast recovery
 
-🎯 Design Philosophy
+## 🎯 Design Philosophy
 
 This system is designed so that:
 
-• Failures are isolated
-• Recovery is predictable
-• No single failure causes data loss
-• Data pipelines should bend, not break.
+- Failures are isolated
+- Recovery is predictable
+- No single failure causes data loss
+- Data pipelines should bend, not break.
 
-📌 Key Takeaway
+## 📌 Key Takeaway
 
-• Most failures are operational, not architectural.
-• This platform is designed to fail safely and recover cleanly.
+- Most failures are operational, not architectural.
+- This platform is designed to fail safely and recover cleanly.
