@@ -43,7 +43,7 @@ Streamlit Dashboard (Visualization)
 
 ---
 
-### 📂 Project Structure
+## 📂 Project Structure
 
 ```text
 stock-pipeline/
@@ -130,7 +130,7 @@ stock-pipeline/
   
 ---
 
-### ▶️ Running the Platform (Local)
+## ▶️ Running the Platform (Local)
 
 Please refer `docs/start-stop-services.md`
 
@@ -148,7 +148,7 @@ This platform is intentionally designed to:
 
 ---
 
-### 🚧 Future Enhancements
+## 🚧 Future Enhancements
 
 - Schema Registry integration
 - Delta Lake / Iceberg support
@@ -158,7 +158,7 @@ This platform is intentionally designed to:
 
 ---
 
-### 👤 Author
+## 👤 Author
 
 ### Parag Jain
 
@@ -170,7 +170,7 @@ Cloud & AIML evangelist| Aspiring CTO | FinTech Systems
 
 ---
 
-### ⭐ Final Note
+## ⭐ Final Note
 
 This project is intentionally designed to reflect **real-world production tradeoffs** rather than tutorial shortcuts.
 
