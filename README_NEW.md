@@ -145,6 +145,7 @@ This platform is intentionally designed to:
 - Enable predictable recovery
 
 📄 See: docs/failure-and-recovery.md
+
 ---
 
 ### 🚧 Future Enhancements
@@ -160,7 +161,9 @@ This platform is intentionally designed to:
 ### 👤 Author
 
 **Parag Jain**
+
 Director Software Engineering | Streaming & Data Platforms |
+
 Cloud & AIML evangelist| Aspiring CTO | FinTech Systems
 
 **🔗 GitHub:** https://github.com/jainparag1**   
@@ -173,3 +176,5 @@ Cloud & AIML evangelist| Aspiring CTO | FinTech Systems
 This project is intentionally designed to reflect **real-world production tradeoffs** rather than tutorial shortcuts.
 
 If you are a **recruiter, hiring manager, or founder,** this repository demonstrates how I approach building, operating, and scaling modern data platforms.
+
+---

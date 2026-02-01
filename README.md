@@ -1,47 +1,180 @@
 # 📈 Stock Market Streaming Platform
 
-This repository contains a production-style, end-to-end **real-time stock market streaming and analytics platform** built to demonstrate modern data engineering, streaming systems, and lakehouse architecture using open-source tools.
+A production-style **real-time stock market streaming and analytics platform** built to demonstrate modern data engineering, streaming systems, and lakehouse design.
 
-The platform simulates high-frequency stock market ticks, ingests them through **Kafka**, processes them using **Spark Structured Streaming**, stores them in an **S3-compatible lakehouse (MinIO)**, compacts data using **Spark batch jobs**, orchestrated by **Airflow**, models analytics using **dbt with DuckDB**, and visualizes insights via a **Streamlit** dashboard.
+This project simulates high-frequency stock ticks, processes them using Spark Structured Streaming, stores them in an S3-compatible lakehouse (MinIO), orchestrates batch compaction via Airflow, models analytics using dbt + DuckDB, and visualizes trends in real time using Streamlit.
 
-This project is intentionally designed to reflect **real-world system design trade-offs**, operational challenges, and recovery patterns rather than toy examples or tutorial shortcuts. It is aimed at showcasing strong hands-on expertise in **streaming systems, distributed data processing, orchestration, and analytics engineering**, with a clear focus on senior engineer, tech lead, and CTO-level expectations.
+> 🧠 Built to showcase **streaming expertise**, **system design**, and **tech leadership mindset**.
 
-At a high level, the architecture follows this flow:
+---
 
-**Decoupled Streaming Ingestion** → Kafka buffers events, decoupling producers from consumers. -> **Stateful Stream Processing** → Spark Structured Streaming with checkpointing ensures exactly-once semantics and safe restarts. -> **Lakehouse Storage** → Partitioned Parquet on MinIO enables cost-efficient, queryable long-term storage. -> **Intelligent Compaction** → Automated Spark batch jobs eliminate the small-file problem without manual intervention. -> **Scheduled Orchestration** → Airflow provides observability, retries, and failure recovery for all batch workloads. -> 
-**Analytics Layer** → dbt models and DuckDB deliver fast SQL-based insights without external dependencies. -> **User Dashboards** → Stateless Streamlit app visualizes trends, volumes, and anomalies in real time.
+## 🎯 Goals of This Project
 
-The repository is structured as follows:
+- Demonstrate **end-to-end streaming system design**
+- Showcase **production-grade Spark Structured Streaming**
+- Implement **lakehouse patterns** (raw → compacted → analytics)
+- Orchestrate batch jobs using **Airflow**
+- Model analytics using **dbt**
+- Visualize real-time insights with **Streamlit**
+- Position the author for **Senior Engineer / Tech Lead / CTO** roles
 
-- `data_simulator/` contains Kafka producers that generate synthetic stock tick data.
-- `spark_processor/` contains Spark Structured Streaming jobs and batch compaction logic, including the `run_compaction.sh` entrypoint.
-- `jars/` contains explicitly managed Spark, Hadoop, and Kafka connector dependencies.
-- `output/` stores raw streaming parquet data.
-- `aggregates/` stores aggregated or transformed parquet outputs.
-- `checkpoint/` contains Spark Structured Streaming checkpoints for exactly-once processing guarantees.
-- `airflow/` contains DAGs used to orchestrate Spark compaction jobs on a schedule.
-- `dbt_models/` contains the dbt project configured with DuckDB for fast local analytics on parquet data.
-- `dashboards/` contains Streamlit applications for real-time and analytical visualization.
-- `infra/` contains infrastructure setup (Docker, MinIO, Airflow).
-- `docs/` contains architecture, design decisions, and failure-recovery documentation.
-- `artifacts/` contains screenshots, diagrams, and demo assets.
-- `logs/` stores runtime logs.
-- `venv/` contains the Python virtual environment.
-- `spark-4.0.0-bin-hadoop3.tgz` is the Spark distribution used by the project.
+---
 
-The platform demonstrates several key engineering concepts: decoupled ingestion using Kafka, stateful and fault-tolerant stream processing with Spark Structured Streaming, lakehouse-style storage on object storage, mitigation of the small-file problem via compaction, workflow orchestration with Airflow, analytics modeling using dbt, and lightweight BI using Streamlit.
+## 🏗️ High-Level Architecture
 
-Failure handling and recovery are first-class design considerations. Spark streaming jobs rely on checkpoints for restartability, compaction jobs are idempotent and partition-aware, Airflow provides retries and observability, and analytics layers are fully decoupled from ingestion so downstream failures do not impact upstream systems. Detailed recovery scenarios are documented under `docs/`.
+```bash
+Kafka (Stock Ticks)
+↓
+Spark Structured Streaming
+↓
+MinIO (S3-compatible Object Storage)
+↓
+Spark Compaction Jobs (Airflow Orchestrated)
+↓
+dbt + DuckDB (Analytics Layer)
+↓
+Streamlit Dashboard (Visualization)
+```
 
-To run the platform locally, start the infrastructure (Kafka, MinIO, Airflow) using Docker, launch the data simulator to emit stock ticks, run the Spark streaming job to ingest and persist data, allow Airflow to trigger compaction jobs, execute dbt models to build analytical tables, and finally launch the Streamlit dashboard to visualize trends such as price movements, volume spikes, and aggregated metrics.
 
-This project is designed for extensibility. Planned enhancements include schema registry integration, Delta Lake or Iceberg support, stronger end-to-end exactly-once guarantees, cloud-native deployment on AWS or GCP, and CI/CD pipelines for Spark, Airflow, and dbt workflows.
+📄 Deep dives:
+- `docs/executive-summary.md`
+- `docs/failure-and-recovery.md`
 
-Please refer the documents under `docs/` section for **architecture, executive summary** and **running this project locally...!**
+---
 
-Author: **Parag Jain**  
-Director Software Engineering | Streaming & Data Platforms | Aspiring CTO  
-GitHub: https://github.com/jainparag1  
-Linkedin: https://www.linkedin.com/in/parag-jain-0395011
+### 📂 Project Structure
 
-This repository is intended for recruiters, hiring managers, startup founders, and senior engineers who want to evaluate real-world streaming and lakehouse system design skills beyond tutorials and boilerplate demos.
+```text
+stock-pipeline/
+│
+├── data_simulator/        # Kafka producer simulating stock ticks
+│
+├── spark_processor/       # Spark streaming & compaction jobs
+│   ├── stream_processor.py
+│   ├── compaction_job.py
+│   └── run_compaction.sh
+│
+├── jars/                  # Explicit Spark / Hadoop / Kafka dependencies
+│
+├── output/                # Raw streaming parquet output
+├── aggregates/            # Aggregated parquet outputs
+├── checkpoint/            # Spark streaming checkpoints
+│
+├── dashboards/            # Streamlit live dashboard
+│   └── dashboard_live.py
+│
+├── airflow/               # Airflow DAGs for orchestration
+│   └── dags/
+│
+├── dbt_models/            # dbt project with DuckDB
+│   ├── models/
+│   ├── dbt_project.yml
+│   ├── profiles.yml
+│   └── dev.duckdb
+│
+├── infra/                 # Docker / MinIO / Infra setup
+├── artifacts/             # Screenshots, diagrams, demo assets
+├── docs/                  # Architecture & design docs
+├── logs/                  # Runtime logs
+├── venv/                  # Python virtual environment
+│
+├── README.md
+└── spark-4.0.0-bin-hadoop3.tgz
+```
+---
+
+## ⚙️ Core Components
+### 🚀 Data Ingestion (Kafka)
+
+- Simulated stock tick producer
+- Durable event buffering
+- Decouples producers and consumers
+
+### 🔥 Stream Processing (Spark)
+
+- Spark Structured Streaming
+- Exactly-once semantics (checkpoint-based)
+- Time-partitioned Parquet output
+
+### 🪣 Storage (MinIO)
+
+- S3-compatible object storage
+- Raw + compacted datasets
+- Partitioned by time
+
+### 🧹 Compaction (Spark Batch)
+
+- Solves the small-file problem
+- Rewrites partitions efficiently
+- Idempotent design
+- Orchestrated by Airflow
+
+### ⏱️ Orchestration (Airflow)
+
+- Scheduled compaction jobs
+- Partition-aware execution
+- Failure retries & observability
+
+### 📊 Analytics (dbt + DuckDB)
+
+- SQL-based transformations
+- Fast local analytics over Parquet
+- Clean separation from ingestion layer
+
+### 📈 Visualization (Streamlit)
+
+- Live stock trends
+- Min / Max / Avg price metrics
+- Stateless, restart-friendly UI
+  
+---
+
+### ▶️ Running the Platform (Local)
+
+Please refer `docs/start-stop-services.md`
+
+---
+
+## 🛡️ Failure Handling & Recovery
+
+This platform is intentionally designed to:
+
+- Isolate failures
+- Prevent data loss
+- Enable predictable recovery
+
+📄 See: docs/failure-and-recovery.md
+
+---
+
+### 🚧 Future Enhancements
+
+- Schema Registry integration
+- Delta Lake / Iceberg support
+- End-to-end exactly-once guarantees
+- Cloud deployment (AWS / AZURE/ GCP)
+- CI/CD for Spark, Airflow, and dbt
+
+---
+
+### 👤 Author
+
+**Parag Jain**
+
+Director Software Engineering | Streaming & Data Platforms |
+
+Cloud & AIML evangelist| Aspiring CTO | FinTech Systems
+
+**🔗 GitHub:** https://github.com/jainparag1**   
+**🔗 LinkedIn:** https://www.linkedin.com/in/parag-jain-0395011**
+
+---
+
+### ⭐ Final Note
+
+This project is intentionally designed to reflect **real-world production tradeoffs** rather than tutorial shortcuts.
+
+If you are a **recruiter, hiring manager, or founder,** this repository demonstrates how I approach building, operating, and scaling modern data platforms.
+
+---
