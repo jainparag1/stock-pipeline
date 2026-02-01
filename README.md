@@ -160,10 +160,9 @@ This platform is intentionally designed to:
 
 ### 👤 Author
 
-**Parag Jain**
+### Parag Jain
 
 Director Software Engineering | Streaming & Data Platforms |
-
 Cloud & AIML evangelist| Aspiring CTO | FinTech Systems
 
 **🔗 GitHub:** https://github.com/jainparag1**   
