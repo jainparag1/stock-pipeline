@@ -21,7 +21,7 @@ This project simulates high-frequency stock ticks, processes them using Spark St
 ---
 
 ## 🏗️ High-Level Architecture
-
+![High Level Architecture](artifacts/screenshots/hla.png)
 ```bash
 Kafka (Stock Ticks)
 ↓
@@ -202,6 +202,7 @@ Real-time visualization of stock price trends.
 ![Dashboard](artifacts/screenshots/streamlit-dashboard.png)
 
 ---
+
 
 
 
