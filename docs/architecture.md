@@ -15,6 +15,8 @@ The system follows modern lakehouse principles and separates concerns across:
 
 The architecture is intentionally modular to allow future migration to managed cloud services without redesign.
 
+![High Level Architecture](artifacts/screenshots/hla.png)
+
 ### 2. Design Principles
 
 The platform was designed around the following principles:
@@ -249,5 +251,6 @@ This architecture demonstrates:
 ## 🧠 Architectural Mindset
 
 “Good data systems aren’t defined by tools — they’re defined by boundaries, contracts, and trade-offs.”
+
 
 This project intentionally mirrors how modern data platforms are built in high-performing engineering teams.
