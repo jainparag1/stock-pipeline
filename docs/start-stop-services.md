@@ -100,7 +100,7 @@ docker-compose up -d
 ```
 Then enable DAG in Airflow UI:
 ```bash
-http://localhost:8080
+-  http://localhost:8080
 ```
 
 ### STOP
@@ -185,4 +185,5 @@ To start please run the following command from the project root location
 <b>`sh -x stop_all.sh`</b>
 
 ----
+
 
