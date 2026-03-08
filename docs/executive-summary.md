@@ -56,6 +56,7 @@ This platform models how such systems are built in **real trading, fintech, and 
 - Live trend analysis per stock ticker
 - Stateless and restart-friendly design
 
+![High Level Architecture](../artifacts/screenshots/hla.png)
 ---
 
 ### Key Design Principles
@@ -101,4 +102,5 @@ It demonstrates:
 This platform reflects how **senior engineers and technical leaders** think:
 
 - Not just *how to build*
+
 - But *how to operate, recover, and scale*
