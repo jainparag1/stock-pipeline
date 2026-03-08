@@ -4,7 +4,7 @@
 This document describes the end-to-end architecture of the Stock Market Streaming Platform, a real-time data pipeline designed to ingest, process, store, optimize, and analyze stock market events at scale.
 
 The system follows modern lakehouse principles and separates concerns across:
-
+```
 • Ingestion
 • Stream processing
 • Storage
@@ -12,7 +12,7 @@ The system follows modern lakehouse principles and separates concerns across:
 • Analytics
 • Visualization
 • Orchestration
-
+```
 The architecture is intentionally modular to allow future migration to managed cloud services without redesign.
 
 ![High Level Architecture](../artifacts/screenshots/hla.png)
@@ -254,4 +254,5 @@ This architecture demonstrates:
 
 
 This project intentionally mirrors how modern data platforms are built in high-performing engineering teams.
+
 
