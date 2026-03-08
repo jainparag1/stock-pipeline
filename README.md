@@ -132,7 +132,11 @@ stock-pipeline/
 
 ## ▶️ Running the Platform (Local)
 
-Please refer `docs/start-stop-services.md`
+Please refer `docs/start-stop-services.md
+
+To start all the services in single click #`sh -x start_all.sh`#
+and 
+to stop all the services in single click #`sh -x stop_all.sh`#
 
 ---
 
@@ -197,3 +201,4 @@ Real-time visualization of stock price trends.
 ![Dashboard](artifacts/screenshots/streamlit-dashboard.png)
 
 ---
+
