@@ -175,7 +175,7 @@ Then stop any remaining local processes:
 - Streamlit dashboard
 
 ---
-## Single Click start and stop all the services
+## Single Click Start/Stop All the Services
 
 To start please run the following command from the project root location
 <br>
@@ -185,3 +185,4 @@ To start please run the following command from the project root location
 <b>`sh -x stop_all.sh`</b>
 
 ----
+
