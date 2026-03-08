@@ -177,3 +177,23 @@ This project is intentionally designed to reflect **real-world production tradeo
 If you are a **recruiter, hiring manager, or founder,** this repository demonstrates how I approach building, operating, and scaling modern data platforms.
 
 ---
+
+---
+
+## 📸 Platform Screenshots
+
+### MinIO Lakehouse Storage
+
+Raw streaming parquet files stored in S3-compatible object storage.
+
+![MinIO Buckets](artifacts/screenshots/minio.png)
+
+---
+
+### Live Streamlit Dashboard
+
+Real-time visualization of stock price trends.
+
+![Dashboard](artifacts/screenshots/streamlit-dashboard.png)
+
+---
