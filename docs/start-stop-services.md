@@ -4,7 +4,33 @@ This document provides **one canonical place** to start and stop **all services*
 All commands assume execution from the **project root** unless stated otherwise.
 
 ---
-
+## Prerequisite 
+Please download the following jar files and place them in a jars folder under the root dirctory
+```bash
+spark-token-provider-kafka-0-10_2.12-3.5.0.jar
+stax-api-1.0-2.jar
+commons-collections4-4.4.jar
+stax2-api-4.2.1.jar
+commons-text-1.9.jar
+woodstox-core-6.2.4.jar
+commons-lang3-3.12.0.jar
+re2j-1.6.jar
+commons-pool2-2.11.1.jar
+commons-configuration2-2.8.0.jar
+core-default.xml
+hadoop-auth-3.3.6.jar
+hadoop-common-3.3.6.jar
+hadoop-hdfs-client-3.3.6.jar
+hadoop-hdfs-3.3.6.jar
+hadoop-mapreduce-client-core-3.3.6.jar
+hadoop-client-3.3.6.jar
+hadoop-aws-3.3.6.jar
+hadoop-client-runtime-3.3.6.jar
+aws-java-sdk-bundle-1.12.523.jar
+spark-sql-kafka-0-10_2.12-3.5.0.jar
+kafka-clients-3.5.1.jar
+```
+---
 ## 1️⃣ Infrastructure Services (Kafka, MinIO, Airflow)
 
 ### START
@@ -185,6 +211,7 @@ To start please run the following command from the project root location
 <b>`sh -x stop_all.sh`</b>
 
 ----
+
 
 
 
